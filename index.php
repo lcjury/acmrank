@@ -4,7 +4,6 @@ use Philo\Blade\Blade;
 
 require "vendor/autoload.php";
 require "config/database.php";
-require "init.php";
 $views = __DIR__ . '/views';
 $cache = __DIR__ . '/cache';
 $blade = new Blade($views, $cache);
