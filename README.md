@@ -5,6 +5,10 @@ This is an app using [uhunt](uhunt.felix-halim.net) api (using the [kaspars/hunt
 ## Usage
 Install composer and then run
 `composer install`
+then run
+`touch database.sqlite`
+and run
+`php init.php`
 
 ## To-Do
 
