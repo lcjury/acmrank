@@ -17,9 +17,10 @@
 <div class="small-3 columns">
 <h3>Accepted</h3>
 </div>
-</div>        @foreach($users as $user)
-            @include('partials.userRank', ['user' =>$user])
-          @endforeach
+</div>
+  @foreach($users as $user)
+    @include('partials.userRank', ['user' =>$user])
+  @endforeach
         </div>
       </div>
     </div>
