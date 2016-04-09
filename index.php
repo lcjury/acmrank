@@ -16,7 +16,7 @@ $dotenv->load();
  * User with most accepted first, if two users have
  * the same amount of accepted, the user with less
  * submissions is higher on the ranking
- */
+ *
 function accepted_cmp($user, $other_user)
 {
     if($user['accepted'] == $other_user['accepted'])
@@ -26,14 +26,15 @@ function accepted_cmp($user, $other_user)
             return $user['submissions'] > $other_user['submissions'] ? 1 : -1;
 
     return $user['accepted'] > $other_user['accepted'] ? -1 : 1;
-}
+}*/
 $students = Student::all();
+#$students->sort('function');
 #$users_id = [$hunter->getIdFromUsername("lcjury"), 98807];
 
 foreach($students as $student)
   $users[] = $hunter->userRanklist($student->uva_id,0,0)[0];
 
-uasort($users, 'accepted_cmp');
+uasort($users, 'Student::accepted_cmp');
 
 $view = $blade->view()->make('index', ['users' => $users]);
 
