@@ -3,9 +3,14 @@ use Hunter\Hunter;
 use Philo\Blade\Blade;
 
 require "vendor/autoload.php";
+require "config/database.php";
+require "init.php";
 $views = __DIR__ . '/views';
 $cache = __DIR__ . '/cache';
+$blade = new Blade($views, $cache);
 $hunter = new Hunter();
+$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv->load();
 
 /*
  * User with most accepted first, if two users have
@@ -22,15 +27,14 @@ function accepted_cmp($user, $other_user)
 
     return $user['accepted'] > $other_user['accepted'] ? -1 : 1;
 }
+$students = Student::all();
+#$users_id = [$hunter->getIdFromUsername("lcjury"), 98807];
 
-$users_id = [$hunter->getIdFromUsername("lcjury"), 98807];
-
-foreach($users_id as $user_id)
-  $users[] = $hunter->userRanklist($user_id,0,0)[0];
+foreach($students as $student)
+  $users[] = $hunter->userRanklist($student->uva_id,0,0)[0];
 
 uasort($users, 'accepted_cmp');
 
-$blade = new Blade($views, $cache);
 $view = $blade->view()->make('index', ['users' => $users]);
 
 echo $view->render();
