@@ -1,6 +1,14 @@
 {
     "require": {
         "kaspars/hunter": "^1.2",
-        "philo/laravel-blade": "3.*"
+        "philo/laravel-blade": "3.*",
+        "vlucas/phpdotenv": "^2.2",
+        "robmorgan/phinx": "^0.5.3",
+        "illuminate/database": "^5.2"
+    },
+    "autoload": {
+        "classmap": [
+          "models"
+        ]
     }
 }
