@@ -18,8 +18,8 @@
 <h3>Accepted</h3>
 </div>
 </div>
-  @foreach($users as $user)
-    @include('partials.userRank', ['user' =>$user])
+  @foreach($students as $student)
+    @include('partials.studentRank', ['student' =>$student])
   @endforeach
         </div>
       </div>
