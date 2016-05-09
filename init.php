@@ -14,6 +14,7 @@ Capsule::schema()->create('students', function($table)
         $table->integer('accepted')->unsigned()->default(0);
         $table->integer('submissions')->unsigned()->default(0);
         $table->integer('last_submission')->unsigned()->default(0);
+        $table->integer('type')->unsigned()->default(0);
     });
 Capsule::schema()->create('solveds', function($table)
     {
@@ -32,7 +33,8 @@ Capsule::schema()->create('options', function($table)
         $table->integer('value');
         $table->primary('name');
     });
-Student::create(['uva_id' => 99441, 'name' => 'luis jury']);
+Student::create(['uva_id' => 99441, 'name' => 'luis jury', 'type' => 1]);
+Student::create(['uva_id' => 98807, 'name' => 'javier gonzalez']);
 Option::create(['name' => 'last_update', 'value' => 0]);
 
 ?>
