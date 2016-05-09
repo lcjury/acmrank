@@ -1,21 +1,23 @@
 <?php
 use Hunter\Hunter;
 use Philo\Blade\Blade;
-
 require "vendor/autoload.php";
-require "config/database.php";
-$views = __DIR__ . '/views';
-$cache = __DIR__ . '/cache';
-$blade = new Blade($views, $cache);
-$hunter = new Hunter();
+
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
-$cache = 1000; // update only each 1000 seconds
+$views = __DIR__ . '/views';
+$cache = __DIR__ . '/cache';
+$blade = new Blade($views, $cache);
 
-$last_update = Option::find('last_update');
-if($last_update->value+$cache < time()) //update is required
+function should_update()
 {
+    $last_update = Option::find('last_update');
+    return $last_update->value + getenv('SCORE_CACHE') < time(); //update is required
+}
+function update_score()
+{
+    $hunter = new Hunter();
     foreach(Student::all() as $student)
     {
         $new_accepted = 0;
@@ -38,9 +40,12 @@ if($last_update->value+$cache < time()) //update is required
         $student->last_submission = $last_submission;
         $student->save();
     }
+    $last_update = Option::find('last_update');
     $last_update->value = time();
     $last_update->save();
 }
+
+if(should_update()) update_score();
 
 $students = Student::all()->sort('Student::accepted_cmp');
 $view = $blade->view()->make('index', ['students' => $students]);
