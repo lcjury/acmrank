@@ -20,6 +20,13 @@ class Student extends Eloquent {
 
         return $user->accepted > $other_user->accepted ? -1 : 1;
     }
+    public function color()
+    {
+        $format = 'style="color: #%s;"';
+        if($this->type == 1)
+            return sprintf($format, "666666");
+        return "";
+    }
 
 
 }
