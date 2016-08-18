@@ -2,7 +2,7 @@
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class Student extends Eloquent {
-    protected $fillable = ['uva_id', 'name'];
+    protected $fillable = ['uva_id', 'name', 'type'];
     public $timestamps = false;
 
     /*
@@ -22,9 +22,9 @@ class Student extends Eloquent {
     }
     public function color()
     {
-        $format = 'style="color: #%s;"';
+        $format = 'color: #%s;';
         if($this->type == 1)
-            return sprintf($format, "666666");
+            return sprintf($format, "00ffff");
         return "";
     }
 
