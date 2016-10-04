@@ -15,23 +15,24 @@ function should_update()
     $last_update = Option::find('last_update');
     return $last_update->value + getenv('SCORE_CACHE') < time(); //update is required
 }
+
 function update_score()
 {
     $hunter = new Hunter();
     foreach(Student::all() as $student)
     {
         $new_accepted = 0;
-        $last_submission = $student->last_submission;
         $submissions = $hunter->userSubmissions($student->uva_id, $student->last_submission);
         foreach($submissions as $submission)
         {
             if($submission['verdict'] == \Hunter\Status::ACCEPTED)
             {
                 $problem_id = $submission['problem'];
-                $last_submission = max($last_submission, $submission['time']);
+                $student->last_submission = max($student->last_submission, $submission['id']);
 
                 $solved = Solved::where('problem_id', $problem_id)
                                 ->where('student_id', $student->id)->first();
+
                 if(is_null($solved))
                 {
                     $new_accepted++;
@@ -40,7 +41,6 @@ function update_score()
             }
         }
         $student->accepted = $student->accepted + $new_accepted;
-        $student->last_submission = $last_submission;
         $student->save();
     }
     $last_update = Option::find('last_update');
