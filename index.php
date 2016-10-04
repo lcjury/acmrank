@@ -29,7 +29,10 @@ function update_score()
             {
                 $problem_id = $submission['problem'];
                 $last_submission = max($last_submission, $submission['time']);
-                if(Solved::where('problem_id', $problem_id)->first() == NULL)
+
+                $solved = Solved::where('problem_id', $problem_id)
+                                ->where('student_id', $student->id)->first();
+                if(is_null($solved))
                 {
                     $new_accepted++;
                     Solved::create(['problem_id' => $problem_id, 'timestamp' => $submission['time'], 'student_id' => $student->id]);
