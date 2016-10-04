@@ -7,10 +7,10 @@ Install composer and then run `composer install`
 
 ## To-Do
 
-1. Store data in a database to avoid too many Curl operations (time consuming operation).
-2. Preview last week changes (like, X go one positión up in the ranking).
-3. Add a global, yearly and weekly rankings.
-4. Add an university flag (for different colleagues students)
+- [x] Store data in a database to avoid too many Curl operations (time consuming operation).
+- [ ] Preview last week changes (like, X go one positión up in the ranking).
+- [ ] Add a global, yearly and weekly rankings.
+- [ ] Add an university flag (for different colleagues students)
 
 ## Future ideas
 
