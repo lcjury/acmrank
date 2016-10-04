@@ -11,5 +11,10 @@
         "classmap": [
           "config", "models"
         ]
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php init.php"
+        ]
     }
 }

@@ -6,6 +6,8 @@ $dotenv->load();
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
+touch('database.sqlite');
+
 Capsule::schema()->create('students', function($table)
     {
         $table->increments('id');

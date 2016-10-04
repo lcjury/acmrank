@@ -3,12 +3,7 @@
 This is an app using [uhunt](uhunt.felix-halim.net) api (using the [kaspars/hunter](https://github.com/kasparsklavins/Hunter) lib) to view problem solving standing on colleagues and try to motivate students on competitive problem solving
 
 ## Usage
-Install composer and then run
-`composer install`
-then run
-`touch database.sqlite`
-and run
-`php init.php`
+Install composer and then run `composer install`
 
 ## To-Do
 
